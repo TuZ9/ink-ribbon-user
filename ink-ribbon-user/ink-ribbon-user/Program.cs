@@ -1,6 +1,7 @@
 using Hangfire;
 using Hangfire.MemoryStorage;
 using ink_ribbon_user.Application.Static;
+using ink_ribbon_user.Infra.Extensions;
 using ink_ribbon_user.Infra.Ioc.Hangfire;
 using ink_ribbon_user.Infra.Ioc.Swagger;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -11,7 +12,7 @@ using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 SwaggerConfiguration.AddSwagger(builder.Services);
 RunTimeConfig.SetConfigs(builder.Configuration);
-
+builder.Services.AddHttpClients();
 builder.Services.AddMemoryCache();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddControllers();

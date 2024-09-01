@@ -5,6 +5,6 @@ namespace ink_ribbon_user.Domain.Interfaces.Services
     public interface ISteamUserSevice
     {
         Task<SteamUser> GetSteamId();
-        Task<SteamUser> GetSteamUser();
+        Task<SteamUser> GetSteamUserById(string steamId);
     }
 }
