@@ -11,7 +11,7 @@ namespace ink_ribbon_user.Controller
 
         public UserController(ILogger<UserController> logger) { _logger = logger; }
 
-        [HttpGet("partial-redemption/conditions")]
+        //[HttpGet("partial-redemption/conditions")]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         public IActionResult GetUser()
