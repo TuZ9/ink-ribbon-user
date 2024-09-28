@@ -10,13 +10,13 @@ namespace ink_ribbon_user.Infra.Extensions
         {
             var serviceProvider = services.BuildServiceProvider();
 
-            var flowerLogger = serviceProvider.GetService(typeof(ILogger<SteamUserApiClient>)) as ILogger<SteamUserApiClient>;
+            var steamLogger = serviceProvider.GetService(typeof(ILogger<SteamUserApiClient>)) as ILogger<SteamUserApiClient>;
 
             services.AddHttpClient("Steam",
                client => { client.BaseAddress = new Uri(RunTimeConfig.SteamEndpoint); });
 
             services.AddSingleton<ISteamUserApiClient, SteamUserApiClient>(x =>
-                new SteamUserApiClient(x.GetService<IHttpClientFactory>()!, flowerLogger, "Flower"));
+                new SteamUserApiClient(x.GetService<IHttpClientFactory>()!, steamLogger, "Steam"));
 
             return services;
         }

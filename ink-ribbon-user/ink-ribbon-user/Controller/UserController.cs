@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ink_ribbon_user.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -8,33 +9,19 @@ namespace ink_ribbon_user.Controller
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
+        private readonly ISteamUserSevice _steamUserSevice;
 
-        public UserController(ILogger<UserController> logger) { _logger = logger; }
-
-        //[HttpGet("partial-redemption/conditions")]
-        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
-        public IActionResult GetUser()
+        public UserController(ILogger<UserController> logger, ISteamUserSevice steamUserSevice)
         {
-            //var command = new GetConditionsQuery(assetId);
-            //var response = await _sender.Send(command);
-
-            //if (response.IsFailure)
-            //    return BadRequest(response.ErrorResponse);
-
-            //if (response.Value == null)
-            //    return NoContent();
-
-            return Ok();
+            _logger = logger;
+            _steamUserSevice = steamUserSevice;
         }
 
-        [HttpGet("partial-redemption/conditions")]
-        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
-        public IActionResult InsertUser()
+        [HttpGet("steam/GetUser")]
+        public async Task<IActionResult> InsertUser(string steamId)
         {
             //var command = new GetConditionsQuery(assetId);
-            //var response = await _sender.Send(command);
+            var user = await _steamUserSevice.GetSteamUserById(steamId);
 
             //if (response.IsFailure)
             //    return BadRequest(response.ErrorResponse);
