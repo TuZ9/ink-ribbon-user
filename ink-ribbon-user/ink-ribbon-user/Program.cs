@@ -25,6 +25,14 @@ builder.Services.AddCors(options => options.AddPolicy("All", opt => opt
                         .AllowCredentials()
                         .SetIsOriginAllowed(hostname => true)));
 
+builder.WebHost.UseKestrel(so =>
+{
+    so.Limits.KeepAliveTimeout = TimeSpan.FromSeconds(10000);
+    so.Limits.MaxRequestBodySize = 52428800;
+    so.Limits.MaxConcurrentConnections = 100;
+    so.Limits.MaxConcurrentConnections = 100;
+});
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddHangfire(x =>
