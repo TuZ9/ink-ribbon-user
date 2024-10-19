@@ -17,6 +17,21 @@ namespace ink_ribbon_user.Application.Services
             _steamClient = steamClient;
         }
 
+        public async Task<SteamUserDto> BuildSteamUser(string userName)
+        {
+            try
+            {
+                var steamId = await GetSteamIdByName(userName);
+                var steamUser = await GetSteamUserById(steamId.response.steamid);
+                return steamUser;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error Message {0}", ex.Message);
+                throw;
+            }
+        }
+
         public Task<SteamUser> GetSteamId()
         {
             throw new NotImplementedException();

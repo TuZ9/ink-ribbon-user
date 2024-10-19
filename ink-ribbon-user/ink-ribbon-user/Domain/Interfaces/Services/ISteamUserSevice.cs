@@ -8,5 +8,6 @@ namespace ink_ribbon_user.Domain.Interfaces.Services
         Task<SteamUser> GetSteamId();
         Task<SteamUserDto> GetSteamUserById(string steamId);
         Task<SteamUserDto> GetSteamIdByName(string userName);
+        Task<SteamUserDto> BuildSteamUser(string userName);
     }
 }
