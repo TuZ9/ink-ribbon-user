@@ -21,7 +21,7 @@ namespace ink_ribbon_user.Controller
         public async Task<IActionResult> GetSteamIdByName(string steamName)
         {
             //var command = new GetConditionsQuery(assetId);
-            var user = await _steamUserSevice.GetSteamIdByName(steamName);
+            var user = await _steamUserSevice.BuildSteamUser(steamName);
             return Ok(user);
         }
 
