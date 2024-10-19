@@ -6,10 +6,8 @@ namespace ink_ribbon_user.Application.Static
     {
         public static string? Auroraconnection;
         public static string? Mongoconnection = "";
-        public static string SteamEndpoint = "http://api.steampowered.com";
+        public static string SteamEndpoint = "https://api.steampowered.com";
         public static string SteamKey = "7EF68DF4509300363D18904036C9C169";
-
-
 
         public static void SetConfigs(ConfigurationManager configuration)
         {

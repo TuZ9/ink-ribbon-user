@@ -34,7 +34,6 @@ builder.WebHost.UseKestrel(so =>
 });
 
 builder.Services.AddEndpointsApiExplorer();
-
 builder.Services.AddHangfire(x =>
 {
     x.SetDataCompatibilityLevel(CompatibilityLevel.Version_170);

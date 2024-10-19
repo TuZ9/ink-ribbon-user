@@ -2,7 +2,7 @@
 
 namespace ink_ribbon_user.Domain.Interfaces.ApiClientService
 {
-    public interface ISteamUserNameApiClient : IServiceClientBase<SteamUserDto>
+    public interface ISteamUserApiClient : IServiceClientBase<SteamUserDto>
     {
     }
 }

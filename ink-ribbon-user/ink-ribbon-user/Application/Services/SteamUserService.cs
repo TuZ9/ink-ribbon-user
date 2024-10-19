@@ -22,6 +22,21 @@ namespace ink_ribbon_user.Application.Services
             throw new NotImplementedException();
         }
 
+        public async Task<SteamUserDto> GetSteamIdByName(string userName)
+        {
+            try
+            {
+                var user = await _steamClient.GetAsync($"/ISteamUser/ResolveVanityURL/v0001/?key={RunTimeConfig.SteamKey}&vanityurl={userName}");
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error Message {0}", ex.Message);
+                throw;
+            }
+        }
+
         public async Task<SteamUserDto> GetSteamUserById(string steamId)
         {
             try

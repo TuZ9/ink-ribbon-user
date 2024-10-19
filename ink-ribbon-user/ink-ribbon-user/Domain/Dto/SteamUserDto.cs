@@ -1,4 +1,6 @@
-﻿namespace ink_ribbon_user.Domain.Dto
+﻿
+
+namespace ink_ribbon_user.Domain.Dto
 {
     public class SteamUserDto
     {
@@ -25,10 +27,5 @@
         public required string loccountrycode { get; set; }
         public required string locstatecode { get; set; }
         public int loccityid { get; set; }
-    }
-
-    public class Response
-    {
-        public required List<Player> players { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ink_ribbon_user.Domain.Interfaces.ApiClientService;
+using System.Net.Http;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
@@ -37,10 +38,11 @@ namespace ink_ribbon_user.Application.Services
 
         public async Task<TEntity> GetAsync(string url)
         {
+            
             try
             {
-                _logger.LogInformation("Get from url: {0}", url);
                 using var httpResponseMessage = await _httpClient.GetAsync(url);
+                _logger.LogInformation("Get from url: {0}", url);
 
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
@@ -48,13 +50,14 @@ namespace ink_ribbon_user.Application.Services
                     var result = JsonSerializer.Deserialize<TEntity>(contentStream);
                     return result;
                 }
-                return null;
             }
             catch (Exception ex)
             {
                 _logger.LogError("Resourse Server {0} return an error {1}", url, ex.Message);
                 throw new Exception(ex.Message);
             }
+            return null;
+
         }
 
         public async Task<IEnumerable<TEntity?>> GetListAsync(string url)
