@@ -1,6 +1,6 @@
 ﻿using ink_ribbon_user.Application.Static;
-using ink_ribbon_user.Domain.Interfaces.ApiClientService;
-using ink_ribbon_user.Infra.HttpClientBase;
+using ink_ribbon_user.Domain.Interfaces.ApiClientService.Steam;
+using ink_ribbon_user.Infra.HttpClientBase.Steam;
 
 namespace ink_ribbon_user.Infra.Extensions
 {

@@ -1,6 +1,4 @@
-﻿
-
-namespace ink_ribbon_user.Domain.Dto
+﻿namespace ink_ribbon_user.Domain.Dto.Steam
 {
     public class SteamUserDto
     {

@@ -1,7 +1,7 @@
 ﻿using ink_ribbon_user.Application.Static;
-using ink_ribbon_user.Domain.Dto;
+using ink_ribbon_user.Domain.Dto.Steam;
 using ink_ribbon_user.Domain.Entities;
-using ink_ribbon_user.Domain.Interfaces.ApiClientService;
+using ink_ribbon_user.Domain.Interfaces.ApiClientService.Steam;
 using ink_ribbon_user.Domain.Interfaces.Services;
 
 namespace ink_ribbon_user.Application.Services
