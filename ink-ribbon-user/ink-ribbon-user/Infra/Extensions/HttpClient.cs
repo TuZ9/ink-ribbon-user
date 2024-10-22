@@ -11,8 +11,9 @@ namespace ink_ribbon_user.Infra.Extensions
         public static IServiceCollection AddHttpClients(this IServiceCollection services)
         {
             var serviceProvider = services.BuildServiceProvider();
-
+            
             services.AddHttpClient<ISteamUserApiClient, SteamUserApiClient>(_ => _.BaseAddress = new Uri(RunTimeConfig.SteamEndpoint));
+            services.AddHttpClient<IXboxLastSeenApiClient, XboxLastSeenApiClient>(_ => _.BaseAddress = new Uri(RunTimeConfig.XboxEndpoint));
             services.AddHttpClient<IXboxUserApiClient, XboxUserApiClient>(_ => _.BaseAddress = new Uri(RunTimeConfig.XboxEndpoint));
 
             return services;

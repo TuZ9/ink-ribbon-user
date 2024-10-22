@@ -31,6 +31,7 @@
     <Folder Include="Application\AutoMapper\" />
     <Folder Include="Infra\Ioc\HealthCheck\" />
     <Folder Include="Infra\Ioc\Serilog\" />
+    <Folder Include="Infra\Middleware\" />
   </ItemGroup>
 
 </Project>

@@ -2,6 +2,7 @@
 {
     public interface IServiceClientBase<TEntity> where TEntity : class
     {
+        Task<IEnumerable<TEntity>> SendListAsync(string url, string token);
         Task<TEntity> SendAsync(string url, string token);
         Task<TEntity> GetAsync(string url);
         Task<IEnumerable<TEntity?>> GetListAsync(string url);

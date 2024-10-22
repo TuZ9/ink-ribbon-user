@@ -45,5 +45,14 @@ namespace ink_ribbon_user.Controller
 
             return Ok(user);
         }
+
+        [HttpGet("Xbox/GetXboxLastSeen")]
+        public async Task<IActionResult> GetXboxLastSeen(string xuid)
+        {
+            //var command = new GetConditionsQuery(assetId);
+            var user = await _xboxUserService.GetLastSeenStatus(xuid);
+
+            return Ok(user);
+        }
     }
 }
