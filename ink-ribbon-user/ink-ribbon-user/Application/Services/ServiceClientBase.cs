@@ -1,5 +1,4 @@
-﻿using ink_ribbon_user.Application.Static;
-using ink_ribbon_user.Domain.Interfaces.ApiClientService;
+﻿using ink_ribbon_user.Domain.Interfaces.ApiClientService;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
@@ -11,9 +10,9 @@ namespace ink_ribbon_user.Application.Services
         private readonly HttpClient _httpClient;
         private readonly ILogger<TYEntity> _logger;
 
-        protected ServiceClientBase(IHttpClientFactory clientFactory, ILogger<TYEntity> logger, string clientName)
+        protected ServiceClientBase(HttpClient clientFactory, ILogger<TYEntity> logger)
         {
-            _httpClient = clientFactory.CreateClient(clientName);
+            _httpClient = clientFactory;
             _logger = logger;
         }
         public async Task DeleteAsync(string url)

@@ -6,7 +6,7 @@ namespace ink_ribbon_user.Infra.HttpClientBase.Xbox
 {
     public class XboxUserApiClient : ServiceClientBase<XboxUserDto, XboxUserApiClient>, IXboxUserApiClient
     {
-        public XboxUserApiClient(IHttpClientFactory clientFactory, ILogger<XboxUserApiClient> logger, string clientName) : base(clientFactory, logger, clientName)
+        public XboxUserApiClient(HttpClient clientFactory, ILogger<XboxUserApiClient> logger) : base(clientFactory, logger)
         {
         }
     }

@@ -1,4 +1,5 @@
-﻿using ink_ribbon_user.Domain.Interfaces.Services;
+﻿using ink_ribbon_user.Domain.Interfaces.ApiClientService.Xbox;
+using ink_ribbon_user.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,11 +11,13 @@ namespace ink_ribbon_user.Controller
     {
         private readonly ILogger<UserController> _logger;
         private readonly ISteamUserSevice _steamUserSevice;
+        private readonly IXboxUserService _xboxUserService;
 
-        public UserController(ILogger<UserController> logger, ISteamUserSevice steamUserSevice)
+        public UserController(ILogger<UserController> logger, ISteamUserSevice steamUserSevice, IXboxUserService xboxUserService)
         {
             _logger = logger;
             _steamUserSevice = steamUserSevice;
+            _xboxUserService = xboxUserService;
         }
 
         [HttpGet("steam/GetSteamIdByName")]
@@ -30,6 +33,15 @@ namespace ink_ribbon_user.Controller
         {
             //var command = new GetConditionsQuery(assetId);
             var user = await _steamUserSevice.GetSteamUserById(steamId);
+
+            return Ok(user);
+        }
+
+        [HttpGet("Xbox/GetXboxUser")]
+        public async Task<IActionResult> GetXboxUser(string gamertag)
+        {
+            //var command = new GetConditionsQuery(assetId);
+            var user = await _xboxUserService.GetUserByGameTag(gamertag);
 
             return Ok(user);
         }
