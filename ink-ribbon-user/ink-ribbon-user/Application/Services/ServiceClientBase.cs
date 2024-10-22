@@ -41,7 +41,7 @@ namespace ink_ribbon_user.Application.Services
             try
             {
                 var request = new HttpRequestMessage(HttpMethod.Get, url);
-                request.Headers.Add("x-authorization", RunTimeConfig.XboxKey);
+                request.Headers.Add("x-authorization", token);
                 using var httpResponseMessage = await _httpClient.SendAsync(request);
                 _logger.LogInformation("Get from url: {0}", url);
 

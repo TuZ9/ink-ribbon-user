@@ -1,4 +1,5 @@
-﻿using ink_ribbon_user.Domain.Dto.Xbox;
+﻿using ink_ribbon_user.Application.Static;
+using ink_ribbon_user.Domain.Dto.Xbox;
 using ink_ribbon_user.Domain.Interfaces.ApiClientService.Xbox;
 using ink_ribbon_user.Domain.Interfaces.Services;
 
@@ -13,11 +14,13 @@ namespace ink_ribbon_user.Application.Services
             _logger = logger;
             _xboxUserClient = xboxUserClient;
         }
-        public Task<XboxUserDto> GetUserByGameTag(string gameTag)
+        public async Task<XboxUserDto> GetUserByGameTag(string gamerTag)
         {
             try
             {
+                var user = await _xboxUserClient.SendAsync($"api/v2/search/{gamerTag}", RunTimeConfig.XboxKey);
 
+                return user;
             }
             catch (Exception ex)
             {

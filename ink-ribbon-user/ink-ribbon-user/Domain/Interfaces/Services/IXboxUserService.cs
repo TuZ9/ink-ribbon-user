@@ -4,6 +4,6 @@ namespace ink_ribbon_user.Domain.Interfaces.Services
 {
     public interface IXboxUserService
     {
-        Task<XboxUserDto> GetUserByGameTag(string gameTag);
+        Task<XboxUserDto> GetUserByGameTag(string gamerTag);
     }
 }

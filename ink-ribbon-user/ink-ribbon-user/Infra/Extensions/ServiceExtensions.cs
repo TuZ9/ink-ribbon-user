@@ -14,7 +14,8 @@ namespace ink_ribbon_user.Infra.Extensions
         private static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             return services
-                .AddScoped<ISteamUserSevice, SteamUserService>();
+                .AddScoped<ISteamUserSevice, SteamUserService>()
+                .AddScoped<IXboxUserService, XboxUserService>();
         }
     }
 }
