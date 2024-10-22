@@ -1,5 +1,5 @@
-﻿using ink_ribbon_user.Domain.Interfaces.ApiClientService;
-using System.Net.Http;
+﻿using ink_ribbon_user.Application.Static;
+using ink_ribbon_user.Domain.Interfaces.ApiClientService;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
@@ -36,9 +36,32 @@ namespace ink_ribbon_user.Application.Services
             }
         }
 
+        public async Task<TEntity> SendAsync(string url, string token)
+        {
+            try
+            {
+                var request = new HttpRequestMessage(HttpMethod.Get, url);
+                request.Headers.Add("x-authorization", RunTimeConfig.XboxKey);
+                using var httpResponseMessage = await _httpClient.SendAsync(request);
+                _logger.LogInformation("Get from url: {0}", url);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
+                    var result = JsonSerializer.Deserialize<TEntity>(contentStream);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Resourse Server {0} return an error {1}", url, ex.Message);
+                throw new Exception(ex.Message);
+            }
+            return null;
+        }
+
         public async Task<TEntity> GetAsync(string url)
         {
-            
             try
             {
                 using var httpResponseMessage = await _httpClient.GetAsync(url);
@@ -57,7 +80,6 @@ namespace ink_ribbon_user.Application.Services
                 throw new Exception(ex.Message);
             }
             return null;
-
         }
 
         public async Task<IEnumerable<TEntity?>> GetListAsync(string url)
