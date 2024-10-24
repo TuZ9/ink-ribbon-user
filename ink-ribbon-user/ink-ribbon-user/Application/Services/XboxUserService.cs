@@ -35,9 +35,9 @@ namespace ink_ribbon_user.Application.Services
         {
             try
             {
-                var lastSeen = await _xboxLastSeenApiClient.SendAsync($"/api/v2/{xuid}/presence", RunTimeConfig.XboxKey);
+                var lastSeen = await _xboxLastSeenApiClient.SendListAsync($"/api/v2/{xuid}/presence", RunTimeConfig.XboxKey);
 
-                return lastSeen;
+                return lastSeen.FirstOrDefault();
             }
             catch (Exception ex)
             {
