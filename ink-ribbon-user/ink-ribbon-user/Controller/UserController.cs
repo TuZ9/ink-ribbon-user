@@ -10,9 +10,9 @@ namespace ink_ribbon_user.Controller
     {
         private readonly ILogger<UserController> _logger;
         private readonly ISteamUserSevice _steamUserSevice;
-        private readonly IXboxUserService _xboxUserService;
+        private readonly IXboxAchievementService _xboxUserService;
 
-        public UserController(ILogger<UserController> logger, ISteamUserSevice steamUserSevice, IXboxUserService xboxUserService)
+        public UserController(ILogger<UserController> logger, ISteamUserSevice steamUserSevice, IXboxAchievementService xboxUserService)
         {
             _logger = logger;
             _steamUserSevice = steamUserSevice;

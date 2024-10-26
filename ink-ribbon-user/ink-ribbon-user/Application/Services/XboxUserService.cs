@@ -9,8 +9,8 @@ namespace ink_ribbon_user.Application.Services
     {
         private readonly ILogger<XboxUserService> _logger;
         private readonly IXboxUserApiClient _xboxUserClient;
-        private readonly IXboxLastSeenApiClient _xboxLastSeenApiClient;
-        public XboxUserService(ILogger<XboxUserService> logger, IXboxUserApiClient xboxUserClient, IXboxLastSeenApiClient xboxLastSeenApiClient)
+        private readonly IXboxAchievementApiClient _xboxLastSeenApiClient;
+        public XboxUserService(ILogger<XboxUserService> logger, IXboxUserApiClient xboxUserClient, IXboxAchievementApiClient xboxLastSeenApiClient)
         {
             _logger = logger;
             _xboxUserClient = xboxUserClient;
