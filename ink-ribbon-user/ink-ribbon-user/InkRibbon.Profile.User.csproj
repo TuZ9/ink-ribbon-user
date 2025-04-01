@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Application\AutoMapper\**" />
+    <Content Remove="Application\AutoMapper\**" />
+    <EmbeddedResource Remove="Application\AutoMapper\**" />
+    <None Remove="Application\AutoMapper\**" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.2" />
 	  <PackageReference Include="AutoMapper" Version="13.0.1" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
@@ -28,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\AutoMapper\" />
     <Folder Include="Infra\Ioc\HealthCheck\" />
     <Folder Include="Infra\Ioc\Serilog\" />
   </ItemGroup>

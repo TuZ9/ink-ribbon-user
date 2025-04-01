@@ -4,6 +4,8 @@
     {
         public required Guid IdUser { get; set; }
         public required Guid IdUserSteam { get; set; }
+        public required Guid IdUserXbox { get; set; }
+        public required Guid IdUserPlay { get; set; }
         public required string RealName { get; set; }
         public required string GamerTag { get; set; }
         public string? Avatar { get; set; }
