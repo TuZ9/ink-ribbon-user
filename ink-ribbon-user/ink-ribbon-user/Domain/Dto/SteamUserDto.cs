@@ -17,15 +17,15 @@ namespace ink_ribbon_user.Domain.Dto
         public required string avatar { get; set; }
         public required string avatarmedium { get; set; }
         public required string avatarfull { get; set; }
-        public required string avatarhash { get; set; }
+        public string? avatarhash { get; set; }
         public int lastlogoff { get; set; }
         public int personastate { get; set; }
-        public required string realname { get; set; }
-        public required string primaryclanid { get; set; }
+        public string? realname { get; set; }
+        public string? primaryclanid { get; set; }
         public int timecreated { get; set; }
         public int personastateflags { get; set; }
-        public required string loccountrycode { get; set; }
-        public required string locstatecode { get; set; }
+        public string? loccountrycode { get; set; }
+        public string? locstatecode { get; set; }
         public int loccityid { get; set; }
     }
 }
