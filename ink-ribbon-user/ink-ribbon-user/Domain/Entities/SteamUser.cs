@@ -4,8 +4,6 @@
     {
         public required Response response { get; set; }
     }
-
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class Player
     {
         public required string steamid { get; set; }

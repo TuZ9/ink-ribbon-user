@@ -1,5 +1,8 @@
 ﻿using ink_ribbon_user.Application.Services;
+using ink_ribbon_user.Domain.Interfaces.Repositories;
 using ink_ribbon_user.Domain.Interfaces.Services;
+using ink_ribbon_user.Infra.Context;
+using ink_ribbon_user.Infra.Repositories.Postgres;
 
 namespace ink_ribbon_user.Infra.Extensions
 {
@@ -14,6 +17,9 @@ namespace ink_ribbon_user.Infra.Extensions
         private static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             return services
+                .AddScoped(_ => new AuroraDbContext())
+                .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<IUserService, UserService>()
                 .AddScoped<ISteamUserSevice, SteamUserService>();
         }
     }

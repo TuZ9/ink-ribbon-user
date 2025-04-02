@@ -64,7 +64,6 @@ namespace ink_ribbon_user.Application.Services
         {
             try
             {
-
                 _logger.LogInformation("Get from url: {0}", url);
                 using var httpResponseMessage = await _httpClient.GetAsync(url);
 

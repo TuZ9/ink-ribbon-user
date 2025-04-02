@@ -89,6 +89,5 @@ app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseCors("All");
-//app.MapHealthChecks();
 app.MapControllers();
 app.Run();

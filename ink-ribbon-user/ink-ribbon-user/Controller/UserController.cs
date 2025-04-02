@@ -1,4 +1,5 @@
-﻿using ink_ribbon_user.Domain.Interfaces.Services;
+﻿using ink_ribbon_user.Domain.Entities;
+using ink_ribbon_user.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,28 +9,17 @@ namespace ink_ribbon_user.Controller
     [EnableCors("All")]
     public class UserController : ControllerBase
     {
-        private readonly ILogger<UserController> _logger;
-        private readonly ISteamUserSevice _steamUserSevice;
+        private readonly IUserService _userService;
 
-        public UserController(ILogger<UserController> logger, ISteamUserSevice steamUserSevice)
+        public UserController(IUserService userService)
         {
-            _logger = logger;
-            _steamUserSevice = steamUserSevice;
+            _userService = userService;
         }
 
-        [HttpGet("steam/GetSteamIdByName")]
-        public async Task<IActionResult> GetSteamIdByName(string steamName)
+        [HttpPost("User/InsertUser")]
+        public async Task<IActionResult> InsertUser(User user)
         {
-            //var command = new GetConditionsQuery(assetId);
-            var user = await _steamUserSevice.GetSteamIdByName(steamName);
-            return Ok(user);
-        }
-
-        [HttpGet("steam/GetUser")]
-        public async Task<IActionResult> GetSteamUserById(string steamId)
-        {
-            //var command = new GetConditionsQuery(assetId);
-            var user = await _steamUserSevice.GetSteamUserById(steamId);
+            await _userService.Insert(user);
 
             return Ok(user);
         }

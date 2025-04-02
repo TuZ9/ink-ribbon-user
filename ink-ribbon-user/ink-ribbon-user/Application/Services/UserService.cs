@@ -1,31 +1,67 @@
-﻿using ink_ribbon_user.Domain.Interfaces.Services;
+﻿using ink_ribbon_user.Domain.Entities;
+using ink_ribbon_user.Domain.Interfaces.Repositories;
+using ink_ribbon_user.Domain.Interfaces.Services;
 
 namespace ink_ribbon_user.Application.Services
 {
     public class UserService : IUserService
     {
         private readonly ILogger<UserService> _logger;
+        private readonly IUserRepository _userRepository;
 
-        public UserService(ILogger<UserService> logger){_logger = logger;}
-
-        public Task Delete()
+        public UserService(ILogger<UserService> logger, IUserRepository userRepository)
         {
-            throw new NotImplementedException();
+            _logger = logger;
+            _userRepository = userRepository;
         }
 
-        public Task Get()
+        public async Task Delete(string idUser)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _userRepository.Delete(idUser);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
-        public Task Insert()
+        public async Task<User> Get(string idUser)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = await _userRepository.Get(idUser);
+                return result.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
-        public Task Update()
+        public async Task Insert(User user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _userRepository.Insert(user);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task Update(User user)
+        {
+            try
+            {
+                await _userRepository.Update(user);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

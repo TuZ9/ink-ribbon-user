@@ -7,17 +7,6 @@
         public SwaggerAuthorizeMiddleware(RequestDelegate next) { _next = next; }
 
 
-        public async Task Invoke(HttpContext context)
-        {
-            if (context.Request.Path.StartsWithSegments("/swagger"))
-            {
-                if (string.IsNullOrWhiteSpace(context.Request.Headers["Authorization"]))
-                {
-                    AuthHeader(context);
-                }
-            }
-        }
-
         private void AuthHeader(HttpContext context)
         {
             var res = context.Response;
