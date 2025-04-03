@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkRibbon.Profile.User", "ink-ribbon-user\InkRibbon.Profile.User.csproj", "{445B09EA-7FE9-482C-A214-6D9063B32A30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkRibbon.User", "ink-ribbon-user\InkRibbon.User.csproj", "{445B09EA-7FE9-482C-A214-6D9063B32A30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

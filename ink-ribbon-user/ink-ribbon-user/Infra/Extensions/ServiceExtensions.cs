@@ -19,8 +19,8 @@ namespace ink_ribbon_user.Infra.Extensions
             return services
                 .AddScoped(_ => new AuroraDbContext())
                 .AddScoped<IUserRepository, UserRepository>()
-                .AddScoped<IUserService, UserService>()
-                .AddScoped<ISteamUserSevice, SteamUserService>();
+                .AddSingleton<IUserService, UserService>()
+                .AddSingleton<ISteamUserSevice, SteamUserService>();
         }
     }
 }

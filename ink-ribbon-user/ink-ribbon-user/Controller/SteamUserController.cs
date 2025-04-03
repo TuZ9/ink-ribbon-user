@@ -18,7 +18,6 @@ namespace ink_ribbon_user.Controller
         [HttpGet("steam/GetSteamIdByName")]
         public async Task<IActionResult> GetSteamIdByName(string steamName)
         {
-            //var command = new GetConditionsQuery(assetId);
             var user = await _steamUserSevice.GetSteamIdByName(steamName);
             return Ok(user);
         }
@@ -26,7 +25,6 @@ namespace ink_ribbon_user.Controller
         [HttpGet("steam/GetUser")]
         public async Task<IActionResult> GetSteamUserById(string steamId)
         {
-            //var command = new GetConditionsQuery(assetId);
             var user = await _steamUserSevice.GetSteamUserById(steamId);
 
             return Ok(user);

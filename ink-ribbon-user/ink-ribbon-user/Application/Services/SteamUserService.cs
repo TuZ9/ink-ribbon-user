@@ -3,6 +3,9 @@ using ink_ribbon_user.Domain.Dto;
 using ink_ribbon_user.Domain.Entities;
 using ink_ribbon_user.Domain.Interfaces.ApiClientService;
 using ink_ribbon_user.Domain.Interfaces.Services;
+using RabbitMQ.Client;
+using System.Text;
+using System.Text.Json;
 
 namespace ink_ribbon_user.Application.Services
 {
@@ -32,9 +35,46 @@ namespace ink_ribbon_user.Application.Services
             }
         }
 
-        public Task<SteamUser> GetSteamId()
+        public async Task GetSteamId()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _httpClient = new HttpClient();
+
+                using var httpResponseMessage = await _httpClient.GetAsync("https://api.steampowered.com/ISteamApps/GetAppList/v2/");
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
+                    var result = JsonSerializer.Deserialize<GamesDto>(contentStream);
+                    var factory = new ConnectionFactory() { HostName = "localhost", UserName = "guest", Password = "guest", Port = 5672 };
+                    using (var connection = await factory.CreateConnectionAsync())
+
+
+                    using (var channel = await connection.CreateChannelAsync())
+                    {
+                        await channel.QueueDeclareAsync(queue: "fila.teste",
+                                                    durable: true,
+                                                    exclusive: false,
+                                                    autoDelete: false,
+                                                    arguments: null);
+                        foreach (var g in result.applist.apps)
+                        {
+                            var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(g));
+                            
+                            await channel.BasicPublishAsync(exchange: "",
+                                                        routingKey: "fila.teste",
+                                                        body: body);
+                            _logger.LogInformation($"Messagem publicada Serilog {JsonSerializer.Serialize(g)}");
+                        }
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<SteamUserDto> GetSteamIdByName(string userName)

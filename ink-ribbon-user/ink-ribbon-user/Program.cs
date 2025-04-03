@@ -6,12 +6,15 @@ using ink_ribbon_user.Infra.Ioc.Hangfire;
 using ink_ribbon_user.Infra.Ioc.Swagger;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using RabbitMQ.Client;
 using System.Diagnostics;
+using System.Runtime;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 SwaggerConfiguration.AddSwagger(builder.Services);
 RunTimeConfig.SetConfigs(builder.Configuration);
+GCSettings.LatencyMode = GCLatencyMode.Batch;
 builder.Services.AddHttpClients();
 builder.Services.AddServices();
 builder.Services.AddMemoryCache();
@@ -76,13 +79,13 @@ app.UseHealthChecks("/env", new HealthCheckOptions
     {
         var result = JsonSerializer.Serialize(new
         {
-            //Environment = env.EnvironmentName,
             SystemEnvironment = Environment.GetEnvironmentVariable("dev"),
         });
-        //context.Response.ContentType = MediaTypeNames.Application.Json;
         await context.Response.WriteAsync(result);
     }
 });
+var serviceProvider = builder.Services.BuildServiceProvider();
+HangireJobs.RunHangFireJob(serviceProvider);
 
 app.UseRouting();
 app.UseAuthentication();

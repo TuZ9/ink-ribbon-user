@@ -34,7 +34,7 @@ namespace ink_ribbon_user.Application.Services
                 var result = await _userRepository.Get(idUser);
                 return result.FirstOrDefault();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -46,7 +46,7 @@ namespace ink_ribbon_user.Application.Services
             {
                 await _userRepository.Insert(user);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -58,7 +58,7 @@ namespace ink_ribbon_user.Application.Services
             {
                 await _userRepository.Update(user);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

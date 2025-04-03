@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "InkRibbon.Profile.User": {
+    "InkRibbon.User": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "index.html",
